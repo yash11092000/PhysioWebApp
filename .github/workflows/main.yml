@@ -3,7 +3,7 @@ name: Build .NET Framework MVC
 on:
   push:
     branches:
-      - main  # Replace if you use a different branch
+      - main
 
 jobs:
   build:
@@ -20,5 +20,12 @@ jobs:
       run: nuget restore PhysioWeb.sln
 
     - name: Build and Publish Project
+      shell: cmd
       run: |
         "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\MSBuild.exe" PhysioWeb.sln /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PublishUrl=publish_output
+
+    - name: Upload Published Output
+      uses: actions/upload-artifact@v4
+      with:
+        name: mvc_publish
+        path: publish_output
