@@ -1,0 +1,88 @@
+## Ignore Visual Studio temporary files, build results, and
+## user-specific files
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Bb]in/
+[Oo]bj/
+*.dll
+*.exe
+
+# Uncomment if you have tasks that create the actual publish folder
+# (ex: when using dotnet publish or CI/CD with artifacts)
+# publish/
+
+# NuGet packages
+*.nupkg
+# The packages folder can be ignored because of Package Restore
+**/packages/*
+!**/packages/build/
+!**/packages/repositories.config
+
+# Microsoft Azure Web Apps deploy settings
+PublishScripts/
+*.Publish.xml
+*.azurePubxml
+*.pubxml
+*.publishproj
+
+# SQL Server files
+*.mdf
+*.ldf
+
+# LocalDB settings
+*.dbmdl
+
+# VS Code
+.vscode/
+
+# Rider
+.idea/
+
+# Logs
+*.log
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Web config transforms
+web.*.config
+
+# User secrets
+secrets.json
+
+# IIS Express
+.vs/
+*.vspscc
+*.vssscc
+
+# Test results
+TestResults/
+*.trx
+
+# DotCover
+.idea/
+*.dotCover
+
+# StyleCop
+StyleCopReport.xml
+
+# JetBrains ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+# Dotnet tool restore file
+.dotnet-tools.json
+
+# Azure Pipelines
+.azure-pipelines.yml
