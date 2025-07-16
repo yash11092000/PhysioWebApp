@@ -1,0 +1,30 @@
+name: Build .NET Framework MVC
+
+on:
+  push:
+    branches:
+      - main  # or your actual working branch
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1
+
+    - name: Restore NuGet packages
+      run: nuget restore PhysioWeb.sln
+
+    - name: Build and Publish Project
+      run: |
+        msbuild PhysioWeb.sln /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PublishUrl=publish_output
+
+    - name: Upload Published Output
+      uses: actions/upload-artifact@v4
+      with:
+        name: mvc_publish
+        path: publish_output
