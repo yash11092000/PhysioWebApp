@@ -1,9 +1,10 @@
-name: Build .NET Framework MVC
+name: Build Check - .NET Framework MVC
 
 on:
   push:
     branches:
-      - main
+      - main   # Or your active branch
+  pull_request:
 
 jobs:
   build:
@@ -19,16 +20,7 @@ jobs:
     - name: Restore NuGet packages
       run: nuget restore PhysioWeb.sln
 
-    - name: Build and Publish Project
+    - name: Build the solution
       shell: cmd
       run: |
-        "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\MSBuild.exe" "PhysioWeb\PhysioWeb.csproj" /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PublishUrl=publish_output
-
-    - name: List published output
-      run: dir publish_output
-
-    - name: Upload Published Output
-      uses: actions/upload-artifact@v4
-      with:
-        name: mvc_publish
-        path: publish_output
+        "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\MSBuild.exe" PhysioWeb.sln /p:Configuration=Release /verbosity:minimal
