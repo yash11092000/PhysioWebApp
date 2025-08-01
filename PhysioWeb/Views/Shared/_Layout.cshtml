@@ -1,49 +1,133 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - PhysioWeb</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/PhysioWeb.styles.css" asp-append-version="true" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - PhysioWeb</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/PhysioWeb.styles.css" asp-append-version="true" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+	<style>
+
+
+		.btn-orange {
+			background-color: #f28500;
+			color: #fff !important;
+			border-radius: 50px;
+			padding: 0.6rem 1.5rem;
+			font-size: 1.1rem;
+			font-weight: 500;
+			border: none;
+			transition: all 0.3s ease;
+		}
+
+			.btn-orange:hover {
+				background-color: #f4a261;
+			}
+
+		.btn-outline-orange {
+			color: #f28500 !important;
+			border: 2px solid #f28500;
+			border-radius: 50px;
+			padding: 0.6rem 1.5rem;
+			font-size: 1.1rem;
+			font-weight: 500;
+			transition: all 0.3s ease;
+		}
+
+			.btn-outline-orange:hover {
+				background-color: #f28500;
+				color: #fff !important;
+			}
+
+		a.btn,
+		a.btn:visited {
+			text-decoration: none !important;
+		}
+
+		.card {
+			border-radius: 1rem !important; /* Equivalent to rounded-4 */
+		}
+
+		/* Applies to your custom boxes (like in How It Works) */
+		.rounded-card {
+			border-radius: 1rem;
+		}
+
+		/* Optional: smoother shadows */
+		.shadow-sm {
+			box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05) !important;
+		}
+
+		.navbar-toggler-icon {
+			background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(33, 37, 41, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+		}
+
+		.btn-orange {
+			background-color: #f28500;
+			color: white;
+		}
+
+			.btn-orange:hover {
+				background-color: #d66e00;
+			}
+	</style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PhysioWeb</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+	<header>
+		<nav class="navbar navbar-expand-lg shadow-sm sticky-top" style="background-color: #fffdfb;">
+			<div class="container">
+				<a class="navbar-brand fw-bold" href="#" style="color: #f28500; font-size: 1.6rem;">
+					<i class="bi bi-heart-pulse-fill me-1"></i> Physio
+				</a>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - PhysioWeb - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+					<ul class="navbar-nav me-4">
+						<li class="nav-item">
+							<a class="nav-link px-3 active" href="/" style="color: #333;">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link px-3" href="/Home/AboutUs" style="color: #333;">About</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link px-3" href="/Home/ContactUs" style="color: #333;">Contact</a>
+						</li>
+					</ul>
+
+					<a href="/Home/Login" class="btn btn-outline-orange me-2 text-decoration-none">Login</a>
+					<a href="/Home/Register" class="btn btn-orange text-decoration-none">Sign Up</a>
+				</div>
+			</div>
+		</nav>
+
+	</header>
+	<div class="container">
+		<main role="main" class="pb-3">
+			@RenderBody()
+		</main>
+	</div>
+
+	<footer class="border-top footer text-muted">
+		<div class="container">
+			&copy; 2025 - PhysioWeb - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+		</div>
+	</footer>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+	<script>
+			   AOS.init({
+		  duration: 800, // animation duration
+		  once: true     // animation only once
+		});
+	</script>
+	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

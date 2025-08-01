@@ -1,8 +1,210 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>Nikita Added.</p>
-</div>
+<header class="py-5" style="background: linear-gradient(to right, #fffdfb, #ffe8d6);">
+	<div class="container text-center">
+		<h1 class="display-4 fw-bold text-dark">Welcome to Physio</h1>
+		<p class="lead text-muted mb-4">
+			Get matched with expert physiotherapists and take the first step toward better movement and recovery.
+		</p>
+		<!-- Main CTA Button -->
+		<a href="/book" class="btn btn-orange btn-lg px-5 me-3 shadow">Book Now</a>
+	</div>
+</header>
+
+
+<section class="py-5" style="background-color: #fffaf5;">
+	<div class="container text-center">
+		<h2 class="fw-bold mb-5" style="color: #f28500;" data-aos="fade-up">How It Works</h2>
+
+		<div class="row justify-content-center g-4">
+
+			<!-- Step 1 -->
+			<div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+				<div class="p-4 bg-white rounded-4 shadow-sm h-100">
+					<div class="mb-3">
+						<i class="bi bi-person-plus-fill fs-1 text-warning"></i>
+					</div>
+					<h5 class="fw-bold mb-2">Sign Up</h5>
+					<p class="text-muted">Create your Physio account as a user or therapist — it’s free and only takes a minute.</p>
+				</div>
+			</div>
+
+			<!-- Step 2 -->
+			<div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+				<div class="p-4 bg-white rounded-4 shadow-sm h-100">
+					<div class="mb-3">
+						<i class="bi bi-calendar-check-fill fs-1 text-warning"></i>
+					</div>
+					<h5 class="fw-bold mb-2">Book a Session</h5>
+					<p class="text-muted">Browse qualified physiotherapists and schedule appointments in just a few clicks.</p>
+				</div>
+			</div>
+
+			<!-- Step 3 -->
+			<div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+				<div class="p-4 bg-white rounded-4 shadow-sm h-100">
+					<div class="mb-3">
+						<i class="bi bi-activity fs-1 text-warning"></i>
+					</div>
+					<h5 class="fw-bold mb-2">Start Healing</h5>
+					<p class="text-muted">Attend your sessions, follow progress, and feel better — one step at a time.</p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+
+<section class="py-5" style="background-color: #fff1e6;">
+	<div class="container text-center">
+		<h2 class="fw-bold mb-5" style="color: #f28500;" data-aos="fade-up">Who Is Physio For?</h2>
+
+		<div class="row g-4 justify-content-center">
+
+			<!-- User Card -->
+			<div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+				<div class="bg-white p-4 rounded-4 shadow h-100">
+					<div class="d-inline-flex align-items-center justify-content-center bg-warning bg-opacity-25 rounded-circle mb-3" style="width: 70px; height: 70px;">
+						<i class="bi bi-person-circle fs-3 text-warning"></i>
+					</div>
+					<h5 class="fw-bold">Users</h5>
+					<p class="text-muted">Find and book licensed physiotherapists with ease, and manage your sessions online.</p>
+				</div>
+			</div>
+
+			<!-- Therapist Card -->
+			<div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+				<div class="bg-white p-4 rounded-4 shadow h-100">
+					<div class="d-inline-flex align-items-center justify-content-center bg-warning bg-opacity-25 rounded-circle mb-3" style="width: 70px; height: 70px;">
+						<i class="bi bi-heart-pulse fs-3 text-warning"></i>
+					</div>
+					<h5 class="fw-bold">Therapists</h5>
+					<p class="text-muted">View your assigned patients, manage schedules, and provide effective therapy.</p>
+				</div>
+			</div>
+
+			<!-- Admin Card -->
+			<div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+				<div class="bg-white p-4 rounded-4 shadow h-100">
+					<div class="d-inline-flex align-items-center justify-content-center bg-warning bg-opacity-25 rounded-circle mb-3" style="width: 70px; height: 70px;">
+						<i class="bi bi-shield-lock fs-3 text-warning"></i>
+					</div>
+					<h5 class="fw-bold">Admins</h5>
+					<p class="text-muted">Add therapists, assign patients, and maintain smooth operation of the platform.</p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+<section class="py-5 bg-white">
+	<div class="container text-center">
+		<h2 class="fw-bold mb-5" style="color: #f28500;" data-aos="fade-up">Why Choose Physio?</h2>
+		<div class="row g-4">
+
+			<div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+				<div class="p-4 bg-light rounded-4 shadow-sm h-100">
+					<i class="bi bi-patch-check-fill fs-1 text-warning mb-3"></i>
+					<h5 class="fw-bold">Verified Therapists</h5>
+					<p class="text-muted">Only certified and experienced physiotherapists on our platform.</p>
+				</div>
+			</div>
+
+			<div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+				<div class="p-4 bg-light rounded-4 shadow-sm h-100">
+					<i class="bi bi-clock-history fs-1 text-warning mb-3"></i>
+					<h5 class="fw-bold">Quick Booking</h5>
+					<p class="text-muted">Book your session in under 2 minutes with our seamless interface.</p>
+				</div>
+			</div>
+
+			<div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+				<div class="p-4 bg-light rounded-4 shadow-sm h-100">
+					<i class="bi bi-bar-chart-line-fill fs-1 text-warning mb-3"></i>
+					<h5 class="fw-bold">Progress Tracking</h5>
+					<p class="text-muted">Monitor your therapy sessions and recovery through your dashboard.</p>
+				</div>
+			</div>
+
+			<div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+				<div class="p-4 bg-light rounded-4 shadow-sm h-100">
+					<i class="bi bi-shield-lock-fill fs-1 text-warning mb-3"></i>
+					<h5 class="fw-bold">Secure Platform</h5>
+					<p class="text-muted">Your health data is protected with top-level encryption and security.</p>
+				</div>
+			</div>
+
+			<div class="col-md-4" data-aos="fade-up" data-aos-delay="500">
+				<div class="p-4 bg-light rounded-4 shadow-sm h-100">
+					<i class="bi bi-phone-vibrate fs-1 text-warning mb-3"></i>
+					<h5 class="fw-bold">Mobile-Friendly</h5>
+					<p class="text-muted">Use Physio on any device, anytime — fully responsive and mobile-ready.</p>
+				</div>
+			</div>
+
+			<div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
+				<div class="p-4 bg-light rounded-4 shadow-sm h-100">
+					<i class="bi bi-headset fs-1 text-warning mb-3"></i>
+					<h5 class="fw-bold">Friendly Support</h5>
+					<p class="text-muted">We’re here to help you 24/7 — your care is our top priority.</p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+
+
+<section class="py-5" style="background-color: #fffaf5;">
+	<div class="container text-center">
+		<h2 class="fw-bold mb-5" style="color: #f28500;" data-aos="fade-up">What Our Users Say</h2>
+
+		<div class="row g-4 justify-content-center">
+
+			<!-- Testimonial 1 -->
+			<div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+				<div class="bg-white p-4 rounded-4 shadow-sm h-100">
+					<p class="text-muted">"Booking a therapist was super easy, and the sessions helped my back pain in just a few weeks!"</p>
+					<div class="d-flex align-items-center mt-4">
+						<img src="https://i.pravatar.cc/50?img=12" class="rounded-circle me-3" alt="User 1">
+						<div class="text-start">
+							<h6 class="mb-0 fw-bold">Riya Sharma</h6>
+							<small class="text-muted">User</small>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Testimonial 2 -->
+			<div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+				<div class="bg-white p-4 rounded-4 shadow-sm h-100">
+					<p class="text-muted">"Managing my patients has never been easier. The dashboard is clean and very intuitive!"</p>
+					<div class="d-flex align-items-center mt-4">
+						<img src="https://i.pravatar.cc/50?img=24" class="rounded-circle me-3" alt="User 2">
+						<div class="text-start">
+							<h6 class="mb-0 fw-bold">Dr. Neha Verma</h6>
+							<small class="text-muted">Therapist</small>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Testimonial 3 -->
+			<div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+				<div class="bg-white p-4 rounded-4 shadow-sm h-100">
+					<p class="text-muted">"Physio has simplified our clinic’s online workflow. Assigning patients is now seamless!"</p>
+					<div class="d-flex align-items-center mt-4">
+						<img src="https://i.pravatar.cc/50?img=32" class="rounded-circle me-3" alt="User 3">
+						<div class="text-start">
+							<h6 class="mb-0 fw-bold">Ankit Deshmukh</h6>
+							<small class="text-muted">Admin</small>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
