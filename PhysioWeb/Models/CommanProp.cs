@@ -8,7 +8,8 @@
         public string CreatedBy { get; set; }
 
         public string UpdatedDate { get; set; }
-
+        public int TotalCount { get; set; }
         public string UpdatedBy { get; set; }
+        public string InActiveText { get; set; }
     }
 }

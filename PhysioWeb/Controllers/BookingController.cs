@@ -4,6 +4,7 @@ using PhysioWeb.Repository;
 
 namespace PhysioWeb.Controllers
 {
+
     public class BookingController : Controller
     {
         private readonly IBookingService _BookingService;
@@ -14,9 +15,6 @@ namespace PhysioWeb.Controllers
         }
         [HttpGet]
         public async Task<ActionResult> BookSession(int BookingType = 1)
-
-
-
         {
             return View();
         }

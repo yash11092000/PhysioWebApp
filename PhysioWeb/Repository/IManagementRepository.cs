@@ -1,4 +1,6 @@
-﻿namespace PhysioWeb.Repository
+﻿using PhysioWeb.Models;
+
+namespace PhysioWeb.Repository
 {
     public interface IManagementRepository
     {

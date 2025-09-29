@@ -85,5 +85,19 @@ namespace PhysioWeb.Data
                 cmd.Parameters.Add(param);
             }
         }
+        // SELECT – return Reader (TVP/multiple result set support)
+        public async Task<IDataReader> GetDataReaderAsync(string storedProc, string[]? paramNames = null, object[]? paramValues = null, SqlDbType[]? paramTypes = null, string[]? tvpTypeNames = null)
+        {
+            var conn = new SqlConnection(_connectionString);
+            var cmd = new SqlCommand(storedProc, conn)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+
+            AddParameters(cmd, paramNames, paramValues, paramTypes, tvpTypeNames);
+
+            await conn.OpenAsync();
+            return await cmd.ExecuteReaderAsync(CommandBehavior.CloseConnection);
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿@model PhysioWeb.Models.ServiceMaster
 @{
-	Layout = "~/Views/Shared/_AuthLayout.cshtml";
+	//Layout = "~/Views/Shared/_AuthLayout.cshtml";
 	ViewData["Title"] = "Services";
 }
 
@@ -59,13 +59,13 @@
 <div class="container mt-4">
 	<ul class="nav nav-tabs mb-3" id="serviceTabs">
 		<li class="nav-item">
-			<a class="nav-link active" data-bs-toggle="tab" href="#listTab">
-				<i class="bi bi-list"></i> Service List
+			<a class="nav-link" data-bs-toggle="tab" href="#formTab">
+				<i class="bi bi-plus-circle"></i> Add Service
 			</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" data-bs-toggle="tab" href="#formTab">
-				<i class="bi bi-plus-circle"></i> Add Service
+			<a class="nav-link active" data-bs-toggle="tab" href="#listTab">
+				<i class="bi bi-list"></i> Service List
 			</a>
 		</li>
 	</ul>
