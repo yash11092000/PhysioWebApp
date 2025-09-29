@@ -8,8 +8,7 @@ builder.Services.AddControllersWithViews();
 // Add services to the container.
 builder.Services.AddScoped<DbHelper>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-
-
+builder.Services.AddScoped<IBookingService, BookingService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

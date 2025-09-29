@@ -1,0 +1,238 @@
+﻿@model PhysioWeb.Models.Booking
+
+@{
+	ViewData["Title"] = "Book Session";
+	var bookingType = Context.Request.Query["BookingType"].ToString();
+	string bookingTitle = "";
+	switch (bookingType)
+	{
+		case "1":
+			bookingTitle = "Online Consultation";
+			break;
+		case "2":
+			bookingTitle = "Book Online Physiotherapy";
+			break;
+		case "3":
+			bookingTitle = "Physiotherapy at Home";
+			break;
+	}
+}
+<style>
+	.step {
+		display: none;
+	}
+
+		.step.active {
+			display: block;
+		}
+
+	.progress-bar {
+		background-color: #f28500 !important;
+	}
+
+	.btn-theme {
+		background-color: #f28500;
+		color: #fff;
+	}
+
+		.btn-theme:hover {
+			background-color: #d97300;
+			color: #fff;
+		}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+
+<div class="container py-5">
+	<h2 class="fw-bold mb-5 text-center" style="color:#f28500;">Free Online Consultation</h2>
+
+	<form id="multiStepForm" class="bg-white p-5 rounded-4 shadow mx-auto" style="max-width:700px;">
+		<!-- Progress Bar -->
+		<div class="progress mb-4" style="height: 10px;">
+			<div class="progress-bar" id="formProgress" style="width: 25%;"></div>
+		</div>
+
+		<!-- Step 1 -->
+		<div class="step active">
+			<div class="mb-3">
+				<label class="form-label fw-bold">Name of Patient</label>
+				<input type="text" class="form-control" id="Name" required>
+			</div>
+			<div class="mb-3">
+				<label class="form-label fw-bold">Mobile Number</label>
+				<input type="text" class="form-control" id="MobileNumber" required>
+			</div>
+		</div>
+
+		<!-- Step 2 -->
+		<div class="step">
+			<div class="mb-3">
+				<label class="form-label fw-bold">City</label>
+				<input type="text" class="form-control" id="City" required>
+			</div>
+			<div class="mb-3">
+				<label class="form-label fw-bold">Pincode</label>
+				<input type="text" class="form-control" id="Pincode" required>
+			</div>
+		</div>
+
+		<!-- Step 3 -->
+		<div class="step">
+			<div class="mb-3">
+				<label class="form-label fw-bold">Address</label>
+				<textarea class="form-control" id="Address" rows="2" required></textarea>
+			</div>
+			<div class="mb-3">
+				<label class="form-label fw-bold">Pain Condition</label>
+				<input type="text" class="form-control" id="PainCondition" required>
+			</div>
+		</div>
+
+		<!-- Step 4 -->
+		<div class="step">
+			<div class="row g-3">
+				<div class="col-md-6">
+					<label class="form-label fw-bold">Select Date</label>
+					<input type="text" class="form-control" id="BookingDate" placeholder="Choose Date" required>
+				</div>
+				<div class="col-md-6">
+					<label class="form-label fw-bold">Select Time</label>
+					<input type="text" class="form-control" id="BookingTime" placeholder="Choose Time" required>
+				</div>
+			</div>
+		</div>
+
+		<!-- Navigation Buttons -->
+		<div class="d-flex justify-content-between mt-4">
+			<button type="button" id="prevBtn" class="btn btn-secondary d-none">Previous</button>
+			<button type="button" id="nextBtn" class="btn btn-theme">Next</button>
+			<button type="submit" id="submitBtn" class="btn btn-theme d-none">Submit</button>
+		</div>
+	</form>
+</div>
+
+@section Scripts {
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+	<script>
+		  let currentStep = 0;
+		const steps = $(".step");
+		const totalSteps = steps.length;
+
+		function showStep(step) {
+			steps.removeClass("active").eq(step).addClass("active");
+
+			// Progress bar
+			const progress = ((step + 1) / totalSteps) * 100;
+			$("#formProgress").css("width", progress + "%");
+
+			// Buttons
+			if (step === 0) {
+				$("#prevBtn").addClass("d-none");
+			} else {
+				$("#prevBtn").removeClass("d-none");
+			}
+
+			if (step === totalSteps - 1) {
+				$("#nextBtn").addClass("d-none");
+				$("#submitBtn").removeClass("d-none");
+			} else {
+				$("#nextBtn").removeClass("d-none");
+				$("#submitBtn").addClass("d-none");
+			}
+		}
+
+		$("#nextBtn").on("click", function () {
+			if (currentStep < totalSteps - 1) {
+				currentStep++;
+				showStep(currentStep);
+			}
+		});
+
+		$("#prevBtn").on("click", function () {
+			if (currentStep > 0) {
+				currentStep--;
+				showStep(currentStep);
+			}
+		});
+				// Validation function
+		function validateStep(step) {
+			let valid = true;
+			const $inputs = steps.eq(step).find(":input");
+
+			$inputs.each(function() {
+				$(this).removeClass("is-invalid");
+
+				if (!this.value) { // required check
+					valid = false;
+					$(this).addClass("is-invalid");
+				} else {
+					// Custom validation
+					if (this.id === "MobileNumber" && !/^\d{10}$/.test(this.value)) {
+						valid = false;
+						$(this).addClass("is-invalid");
+					}
+					if (this.id === "Pincode" && !/^\d{6}$/.test(this.value)) {
+						valid = false;
+						$(this).addClass("is-invalid");
+					}
+				}
+			});
+
+			return valid;
+		}
+
+		$("#submitBtn").on("click", function (e) {
+				e.preventDefault();
+				if (!validateStep(currentStep)) return;
+
+			// Collect data
+			const data = {};
+			$(":input", this).each(function(){
+				if (this.id) data[this.id] = this.value;
+			});
+				 $.ajax({
+			url: '/Booking/SaveSession',
+			type: 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify(data),
+			success: function(data){
+				if(data > 0){
+			 Swal.fire({
+				icon: 'success',
+				title: 'Booking Successful!',
+				text: 'Your consultation has been booked.',
+				confirmButtonColor: '#f28500'
+			});
+			$("#multiStepForm")[0].reset();
+			currentStep = 0;
+			showStep(currentStep);
+				}
+				else{
+				Swal.fire({
+				icon: 'error',
+				title: 'Submission Failed!',
+				text: 'Something Went Wrong.',
+				confirmButtonColor: '#f28500'
+			});
+				}
+		},
+		error: function() {
+			Swal.fire({
+				icon: 'error',
+				title: 'Submission Failed!',
+				text: 'Please try again later.',
+				confirmButtonColor: '#f28500'
+			});
+		}
+		});
+		});
+
+		// Initialize Flatpickr
+		flatpickr("#BookingDate", { dateFormat: "d-m-Y",minDate: "today"  });
+		flatpickr("#BookingTime", { enableTime: true, noCalendar: true, dateFormat: "H:i" });
+
+		// Show first step
+		showStep(currentStep);
+
+	</script>
+      }

@@ -1,6 +1,9 @@
-﻿namespace PhysioWeb.Repository
+﻿using PhysioWeb.Data;
+
+namespace PhysioWeb.Repository
 {
-    public class UserRepository:IUserRepository
+    public class UserRepository : IUserRepository
     {
+       
     }
 }

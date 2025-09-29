@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en">/
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -107,7 +107,7 @@
 		</nav>
 
 	</header>
-	<div class="container">
+	<div class="">
 		<main role="main" class="pb-3">
 			@RenderBody()
 		</main>
@@ -122,8 +122,10 @@
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
 	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 	<script>
-			   AOS.init({
+		AOS.init({
 		  duration: 800, // animation duration
 		  once: true     // animation only once
 		});
