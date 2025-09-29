@@ -1,0 +1,128 @@
+﻿@{
+	Layout = "~/Views/Shared/_AuthLayout.cshtml";
+	ViewData["Title"] = "Services Offered By Us";
+}
+
+<style>
+	body {
+		background-color: #fffaf5;
+	}
+
+	.register-card {
+		border-radius: 1rem;
+		padding: 2rem;
+		background-color: #fff;
+		box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+	}
+
+	.btn-orange {
+		background-color: #f28500;
+		color: white;
+	}
+
+		.btn-orange:hover {
+			background-color: #d66e00;
+		}
+
+	.form-control:focus {
+		border-color: #f28500;
+		box-shadow: 0 0 0 0.2rem rgba(242, 133, 0, 0.25);
+	}
+
+	.link-orange {
+		color: #f28500;
+	}
+
+		.link-orange:hover {
+			color: #d66e00;
+		}
+
+	table th, table td {
+		vertical-align: middle;
+	}
+</style>
+
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+	<div class="col-md-10" data-aos="fade-up">
+		<div class="register-card">
+			<div class="text-center mb-4">
+				<i class="bi bi-gear-fill fs-1 text-warning"></i>
+				<h3 class="fw-bold mt-2" style="color: #f28500;">Services Offered By Us</h3>
+			</div>
+
+			<form action="/Services/Save" method="post" enctype="multipart/form-data">
+
+				<!-- Dropdown -->
+				<div class="mb-3">
+					<label for="serviceDropdown" class="form-label">Select Service</label>
+					<select class="form-select" id="serviceDropdown" name="serviceId" required>
+						<option value="" disabled selected>Select a service</option>
+						<option value="1">Counseling</option>
+						<option value="2">Therapy</option>
+						<option value="3">Workshops</option>
+					</select>
+				</div>
+
+				<!-- Table -->
+				<div class="table-responsive">
+					<table class="table table-bordered align-middle" id="servicesTable">
+						<thead class="table-warning">
+							<tr>
+								<th>Title 1</th>
+								<th>Title 2</th>
+								<th>Description</th>
+								<th>Image</th>
+								<th style="width:80px;">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input type="text" name="title1[]" class="form-control" placeholder="Enter Title 1"></td>
+								<td><input type="text" name="title2[]" class="form-control" placeholder="Enter Title 2"></td>
+								<td><textarea name="description[]" class="form-control" placeholder="Enter Description"></textarea></td>
+								<td><input type="file" name="image[]" class="form-control"></td>
+								<td class="text-center">
+									<button type="button" class="btn btn-success btn-sm addRow"><i class="bi bi-plus-lg"></i></button>
+									<button type="button" class="btn btn-danger btn-sm removeRow"><i class="bi bi-dash-lg"></i></button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<!-- Submit -->
+				<div class="d-grid mt-3">
+					<button type="submit" class="btn btn-orange">Save</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	<script>
+		$(document).ready(function () {
+			// Add new row
+			$(document).on("click", ".addRow", function () {
+				let row = `<tr>
+								<td><input type="text" name="title1[]" class="form-control" placeholder="Enter Title 1"></td>
+								<td><input type="text" name="title2[]" class="form-control" placeholder="Enter Title 2"></td>
+								<td><textarea name="description[]" class="form-control" placeholder="Enter Description"></textarea></td>
+								<td><input type="file" name="image[]" class="form-control"></td>
+								<td class="text-center">
+									<button type="button" class="btn btn-success btn-sm addRow"><i class="bi bi-plus-lg"></i></button>
+									<button type="button" class="btn btn-danger btn-sm removeRow"><i class="bi bi-dash-lg"></i></button>
+								</td>
+							</tr>`;
+				$("#servicesTable tbody").append(row);
+			});
+
+			// Remove row
+			$(document).on("click", ".removeRow", function () {
+				if ($("#servicesTable tbody tr").length > 1) {
+					$(this).closest("tr").remove();
+				}
+			});
+		});
+	</script>
+}

@@ -1,0 +1,249 @@
+﻿@model PhysioWeb.Models.ServiceMaster
+@{
+	Layout = "~/Views/Shared/_AuthLayout.cshtml";
+	ViewData["Title"] = "Services";
+}
+
+<style>
+	#TableList {
+		width: 100% !important;
+		border-collapse: collapse;
+	}
+
+		#TableList thead th {
+			background-color: #fff3e6;
+			color: #f28500;
+			font-weight: 600;
+			text-align: center;
+			vertical-align: middle;
+		}
+
+		#TableList tbody tr:hover {
+			background-color: #fff8f0;
+		}
+
+		#TableList tbody td {
+			vertical-align: middle;
+			text-align: center;
+		}
+
+		#TableList thead input {
+			width: 100%;
+			padding: 5px;
+			box-sizing: border-box;
+			font-size: 0.9rem;
+		}
+
+	.dataTables_wrapper .dataTables_paginate .paginate_button {
+		padding: 0.3rem 0.75rem;
+		margin: 2px;
+		border-radius: 0.3rem;
+	}
+
+		.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+			background-color: #f28500 !important;
+			color: white !important;
+			border: 1px solid #f28500;
+		}
+
+	.dataTables_wrapper .dataTables_filter input,
+	.dataTables_wrapper .dataTables_length select {
+		border-radius: 5px;
+		padding: 5px;
+		border: 1px solid #ced4da;
+	}
+</style>
+
+<link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.min.css" />
+
+<div class="container mt-4">
+	<ul class="nav nav-tabs mb-3" id="serviceTabs">
+		<li class="nav-item">
+			<a class="nav-link active" data-bs-toggle="tab" href="#listTab">
+				<i class="bi bi-list"></i> Service List
+			</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" data-bs-toggle="tab" href="#formTab">
+				<i class="bi bi-plus-circle"></i> Add Service
+			</a>
+		</li>
+	</ul>
+
+	<div class="tab-content">
+		<!-- ✅ Tab 1: Service List -->
+		<div class="tab-pane fade show active" id="listTab">
+			<div class="card shadow-sm border-0">
+				<div class="card-header bg-warning text-white">
+					<h5 class="mb-0"><i class="bi bi-gear-fill"></i> All Services</h5>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table id="TableList" class="table table-hover align-middle">
+							<thead class="table-light">
+								<tr>
+									<th>Title</th>
+									<th>Is Active</th>
+									<th>Created By</th>
+									<th><i class="bi bi-pencil-square text-primary fs-5" title="Edit"></i></th>
+									<th><i class="bi bi-trash text-danger fs-5" title="Delete"></i></th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- ✅ Tab 2: Add/Edit Form -->
+		<div class="tab-pane fade" id="formTab">
+			<div class="col-md-6 mt-3">
+				<div class="card shadow-sm border-0">
+					<div class="card-header bg-warning text-white">
+						<h5 class="mb-0"><i class="bi bi-plus-circle"></i> Add / Edit Service</h5>
+					</div>
+					<div class="card-body">
+						<form id="ServiceForm">
+							<input type="hidden" id="UniquId" name="UniquId" />
+							<div class="mb-3">
+								<label for="title" class="form-label fw-bold">Title <span class="text-danger">*</span></label>
+								<input type="text" class="form-control" id="title" name="title" required placeholder="Enter service title">
+							</div>
+							<div class="form-check mb-3">
+								<input type="checkbox" class="form-check-input" id="isActive" name="isActive" checked />
+								<label class="form-check-label fw-bold" for="isActive">Is Active</label>
+							</div>
+							<div class="d-flex justify-content-end">
+								<button type="button" class="btn btn-outline-secondary me-2" id="btnCancel"><i class="bi bi-x-circle"></i> Cancel</button>
+								<button type="button" class="btn btn-warning text-white" id="btnSave"><i class="bi bi-save"></i> Save</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	<script src="https://cdn.datatables.net/2.3.2/js/dataTables.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			// ✅ Setup DataTable with column filters
+			$('#TableList thead tr').clone(true).appendTo('#TableList thead');
+			$('#TableList thead tr:eq(1) th').each(function (i) {
+				if ($(this).find('i').length === 0) {
+					var title = $('#TableList thead tr:eq(0) th').eq(i).text().trim();
+					$(this).html('<input class="form-control form-control-sm" type="text" placeholder="' + title + '" />');
+				} else {
+					$(this).html('');
+				}
+			});
+
+			var TableList = $("#TableList").DataTable({
+				orderCellsTop: true,
+				processing: true,
+				serverSide: true,
+				order: [[0, "asc"]],
+				ajax: {
+					url: '/Management/ListServices',
+					type: 'POST',
+				},
+				columns: [
+					{ data: 'title' },
+					{ data: 'isActiveText' },
+					{ data: 'createdBy' },
+					{
+						data: null,
+						render: function (data, type, row) {
+							let para = `'${row.uniquId}', 'Master', 'EditService'`;
+							return `<a href="javascript:void(0)" onclick="EditData(${para})">
+										<i class="bi bi-pencil-square text-primary fs-5" title="Edit"></i>
+									</a>`;
+						},
+						orderable: false,
+						searchable: false
+					},
+					{
+						data: null,
+						render: function (data, type, row) {
+							let para = `'${row.uniquId}', 'Master', 'DeleteService'`;
+							return `<a href="javascript:void(0)" onclick="DeleteData(${para})">
+										<i class="bi bi-trash text-danger fs-5" title="Delete"></i>
+									</a>`;
+						},
+						orderable: false,
+						searchable: false
+					}
+				],
+				initComplete: function () {
+					var table = this.api();
+					$('#TableList thead tr:eq(1) th').each(function (i) {
+						$('input', this).on('keyup change', function () {
+							if (table.column(i).search() !== this.value) {
+								table
+									.column(i)
+									.search(this.value)
+									.draw();
+							}
+						});
+					});
+				}
+			});
+
+			// ✅ Save Service
+			$("#btnSave").on("click", function () {
+				var title = $("#title");
+				if (title.val() === "") {
+					title.focus();
+					notyf.error("Please Enter Service Title");
+				} else {
+					$.ajax({
+						url: '/Master/SaveService',
+						method: 'POST',
+						data: $("#ServiceForm").serialize(),
+						success: function (response) {
+							if (response) {
+								notyf.success("Service Saved Successfully");
+								$("#ServiceForm")[0].reset();
+								ClearData();
+								$("#TableList").DataTable().ajax.reload(null, false);
+								$("#serviceTabs a[href='#listTab']").tab('show');
+							} else {
+								notyf.error(response.message || "Failed to save.");
+							}
+						},
+						error: function () {
+							notyf.error("Some Error Occurred While Saving");
+						}
+					});
+				}
+			});
+
+			// ✅ Cancel Button
+			$("#btnCancel").on("click", function () {
+				$("#ServiceForm")[0].reset();
+				ClearData();
+				$("#serviceTabs a[href='#listTab']").tab('show');
+			});
+		});
+
+		function OnSuccessOfEdit(data) {
+			$("#UniquId").val(data.uniquId);
+			$("#title").val(data.title);
+			$("#isActive").prop("checked", data.isActive);
+			$("#serviceTabs a[href='#formTab']").tab('show');
+		}
+
+		function ClearData() {
+			$("#UniquId").val("");
+			$("#title").val("");
+			$("#isActive").prop("checked", true);
+		}
+
+		function OnSuccessOfDelete() {
+			notyf.success("Service Deleted Successfully");
+		}
+	</script>
+}
