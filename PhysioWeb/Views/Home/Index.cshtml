@@ -1,54 +1,200 @@
 ﻿@{
 	ViewData["Title"] = "Home Page";
 }
+<style>
+	.hero-section {
+		background-color: #F1FAFB;
+		border-bottom: 4px solid #FFD166; /* soft yellow underline for warmth */
+	}
 
-<header class="py-5" style="background: linear-gradient(to right, #fffdfb, #ffe8d6);">
-	<div class="container text-center">
-		<h1 class="display-4 fw-bold text-dark">Welcome to Physio</h1>
-		<p class="lead text-muted mb-4">
+	/* Section background */
+	.service-section {
+		background-color: #F1FAFB; /* Calm light blue background */
+	}
+
+	/* Section title */
+	.section-title {
+		color: var(--primary-color);
+	}
+
+	/* Service cards */
+	.service-card {
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+
+		.service-card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 0.75rem 1.25rem rgba(0, 119, 182, 0.15);
+		}
+
+	/* Icon Circle */
+	.icon-circle {
+		width: 70px;
+		height: 70px;
+		border-radius: 50%;
+		background-color: var(--secondary-color);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+		.icon-circle i {
+			color: var(--primary-color);
+		}
+
+	.transition-all {
+		transition: all 0.3s ease;
+	}
+
+	.hover-shadow:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 8px 20px rgba(0, 119, 182, 0.2);
+	}
+
+	.card-blue {
+		background-color: #ffffff;
+		border-radius: 1rem;
+		box-shadow: 0 4px 15px rgba(0, 119, 182, 0.08);
+		transition: all 0.3s ease;
+	}
+
+		.card-blue:hover {
+			transform: translateY(-6px);
+			box-shadow: 0 8px 25px rgba(0, 119, 182, 0.25);
+		}
+
+	.icon-circle {
+		width: 70px;
+		height: 70px;
+		background-color: #90E0EF;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 0 auto 1rem auto;
+		transition: background-color 0.3s ease;
+	}
+
+	.card-blue:hover .icon-circle {
+		background-color: #0077B6;
+	}
+
+		.card-blue:hover .icon-circle i {
+			color: #FFD166 !important; /* Accent contrast */
+		}
+
+	.testimonial-card {
+		background-color: #ffffff;
+		border-radius: 1rem;
+		padding: 1.8rem;
+		box-shadow: 0 4px 15px rgba(0, 119, 182, 0.08);
+		transition: all 0.3s ease;
+	}
+
+		.testimonial-card:hover {
+			transform: translateY(-6px);
+			box-shadow: 0 8px 25px rgba(0, 119, 182, 0.25);
+		}
+
+		.testimonial-card p {
+			font-style: italic;
+			color: #555;
+		}
+
+		.testimonial-card img {
+			width: 50px;
+			height: 50px;
+			object-fit: cover;
+		}
+
+		.testimonial-card:hover img {
+			border-color: #FFD166 !important; /* Accent yellow glow */
+		}
+
+	.card-hover:hover {
+		transform: translateY(-5px);
+		transition: all 0.3s ease;
+		box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+	}
+
+	.hero-section-dark {
+		background: linear-gradient(135deg, #0a2540, #163d63);
+		color: #ffffff;
+		min-height: 80vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+		.hero-section-dark h1 {
+			color: #ffffff;
+		}
+
+		.hero-section-dark p {
+			color: #d1e0f0;
+		}
+
+	/* Button styling */
+	.btn-light {
+		background-color: #f5f9ff;
+		color: #0a2540;
+		border-radius: 50px;
+		font-weight: 600;
+		transition: all 0.3s ease;
+	}
+
+		.btn-light:hover {
+			background-color: #d9e8ff;
+			transform: translateY(-2px);
+		}
+</style>
+
+<header class="py-5 hero-section-dark">
+	<div class="container text-center text-white">
+		<h1 class="display-4 fw-bold mb-3">Welcome to Physio</h1>
+		<p class="lead mb-4">
 			Get matched with expert physiotherapists and take the first step toward better movement and recovery.
 		</p>
-		<!-- Main CTA Button -->
-		<a href="#BookSection" class="btn btn-orange btn-lg px-5 me-3 shadow">Book Now</a>
+		<a href="#BookSection" class="btn btn-light btn-lg px-5 me-3 shadow">Book Now</a>
 	</div>
 </header>
 
 
-<section class="py-5" style="background-color: #fffaf5;">
+<section class="py-5" style="background-color: #E8F6FA;">
 	<div class="container text-center">
-		<h2 class="fw-bold mb-5" style="color: #f28500;" data-aos="fade-up">How It Works!!</h2>
+		<h2 class="fw-bold mb-5 text-primary-custom" data-aos="fade-up">How It Works</h2>
 
 		<div class="row justify-content-center g-4">
 
 			<!-- Step 1 -->
 			<div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-				<div class="p-4 bg-white rounded-4 shadow-sm h-100">
+				<div class="p-4 card-custom rounded-4 shadow-sm h-100">
 					<div class="mb-3">
-						<i class="bi bi-person-plus-fill fs-1 text-warning"></i>
+						<i class="bi bi-person-plus-fill fs-1 text-primary-custom"></i>
 					</div>
-					<h5 class="fw-bold mb-2">Sign Up</h5>
-					<p class="text-muted">Create your Physio account as a user or therapist — it’s free and only takes a minute.</p>
+					<h5 class="fw-bold mb-2 text-dark-custom">Sign Up</h5>
+					<p class="text-muted">Create your Physio account as a user or therapist — it's free and only takes a minute.</p>
 				</div>
 			</div>
 
 			<!-- Step 2 -->
 			<div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-				<div class="p-4 bg-white rounded-4 shadow-sm h-100">
+				<div class="p-4 card-custom rounded-4 shadow-sm h-100">
 					<div class="mb-3">
-						<i class="bi bi-calendar-check-fill fs-1 text-warning"></i>
+						<i class="bi bi-calendar-check-fill fs-1 text-primary-custom"></i>
 					</div>
-					<h5 class="fw-bold mb-2">Book a Session</h5>
+					<h5 class="fw-bold mb-2 text-dark-custom">Book a Session</h5>
 					<p class="text-muted">Browse qualified physiotherapists and schedule appointments in just a few clicks.</p>
 				</div>
 			</div>
 
 			<!-- Step 3 -->
 			<div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-				<div class="p-4 bg-white rounded-4 shadow-sm h-100">
+				<div class="p-4 card-custom rounded-4 shadow-sm h-100">
 					<div class="mb-3">
-						<i class="bi bi-activity fs-1 text-warning"></i>
+						<i class="bi bi-activity fs-1 text-primary-custom"></i>
 					</div>
-					<h5 class="fw-bold mb-2">Start Healing</h5>
+					<h5 class="fw-bold mb-2 text-dark-custom">Start Healing</h5>
 					<p class="text-muted">Attend your sessions, follow progress, and feel better — one step at a time.</p>
 				</div>
 			</div>
@@ -57,144 +203,157 @@
 	</div>
 </section>
 
-<section id="BookSection" class="py-5" style="background-color: #fff1e6;">
+<section id="BookSection" class="py-5 service-section">
 	<div class="container text-center">
-		<h2 class="fw-bold mb-5" style="color: #f28500;" data-aos="fade-up">Our Physiotherapy Services</h2>
+		<h2 class="fw-bold mb-5 section-title" data-aos="fade-up">Our Physiotherapy Services</h2>
 
 		<div class="row g-4 justify-content-center">
 
-			<!-- Online Consultation Card -->
+			<!-- Online Consultation -->
 			<div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
-				<div class="bg-white p-4 rounded-4 shadow h-100 d-flex flex-column">
-					<div class="d-inline-flex align-items-center justify-content-center bg-warning bg-opacity-25 rounded-circle mb-3 mx-auto" style="width: 70px; height: 70px;">
-						<i class="bi bi-laptop fs-3" style="color:#f28500;"></i>
+				<div class="service-card bg-white p-4 rounded-4 shadow h-100 d-flex flex-column">
+					<div class="icon-circle mb-3 mx-auto">
+						<i class="bi bi-laptop fs-3"></i>
 					</div>
 					<h5 class="fw-bold">Online Consultation</h5>
-					<p class="text-muted flex-grow-1">Get expert guidance and physiotherapy advice from certified professionals through secure video calls.</p>
-					<a href="/Booking/BookSession?BookingType=1" class="btn fw-bold text-white mt-auto" style="background-color:#f28500; border:none;">Consult Online</a>
+					<p class="text-muted flex-grow-1">
+						Get expert guidance and physiotherapy advice from certified professionals through secure video calls.
+					</p>
+					<a href="/Booking/BookSession?BookingType=1" class="btn btn-primary-custom fw-bold mt-auto">Consult Online</a>
 				</div>
 			</div>
 
-			<!-- Book Online Physiotherapy Card -->
+			<!-- Book Online Physiotherapy -->
 			<div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
-				<div class="bg-white p-4 rounded-4 shadow h-100 d-flex flex-column">
-					<div class="d-inline-flex align-items-center justify-content-center bg-warning bg-opacity-25 rounded-circle mb-3 mx-auto" style="width: 70px; height: 70px;">
-						<i class="bi bi-calendar-check fs-3" style="color:#f28500;"></i>
+				<div class="service-card bg-white p-4 rounded-4 shadow h-100 d-flex flex-column">
+					<div class="icon-circle mb-3 mx-auto">
+						<i class="bi bi-calendar-check fs-3"></i>
 					</div>
 					<h5 class="fw-bold">Book Online Physiotherapy</h5>
-					<p class="text-muted flex-grow-1">Easily schedule physiotherapy sessions with licensed experts through our online booking system.</p>
-					<a href="/Booking/BookSession?BookingType=2" class="btn fw-bold text-white mt-auto" style="background-color:#f28500; border:none;">Book Now</a>
+					<p class="text-muted flex-grow-1">
+						Easily schedule physiotherapy sessions with licensed experts through our online booking system.
+					</p>
+					<a href="/Booking/BookSession?BookingType=2" class="btn btn-primary-custom fw-bold mt-auto">Book Now</a>
 				</div>
 			</div>
 
-			<!-- Physiotherapy at Home Card -->
+			<!-- Physiotherapy at Home -->
 			<div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
-				<div class="bg-white p-4 rounded-4 shadow h-100 d-flex flex-column">
-					<div class="d-inline-flex align-items-center justify-content-center bg-warning bg-opacity-25 rounded-circle mb-3 mx-auto" style="width: 70px; height: 70px;">
-						<i class="bi bi-house-heart fs-3" style="color:#f28500;"></i>
+				<div class="service-card bg-white p-4 rounded-4 shadow h-100 d-flex flex-column">
+					<div class="icon-circle mb-3 mx-auto">
+						<i class="bi bi-house-heart fs-3"></i>
 					</div>
 					<h5 class="fw-bold">Physiotherapy at Home</h5>
-					<p class="text-muted flex-grow-1">Receive professional physiotherapy treatments in the comfort of your home with our trusted therapists.</p>
-					<a href="/Booking/BookSession?BookingType=3" class="btn fw-bold text-white mt-auto" style="background-color:#f28500; border:none;">Book a Visit</a>
+					<p class="text-muted flex-grow-1">
+						Receive professional physiotherapy treatments in the comfort of your home with our trusted therapists.
+					</p>
+					<a href="/Booking/BookSession?BookingType=3" class="btn btn-primary-custom fw-bold mt-auto">Book a Visit</a>
 				</div>
 			</div>
+
 		</div>
 	</div>
 </section>
 
-
-
-<section class="py-5" style="background-color: #fff1e6;">
+<section class="py-5" style="background-color: #E8F6FA;">
 	<div class="container text-center">
-		<h2 class="fw-bold mb-5" style="color: #f28500;" data-aos="fade-up">Who Is Physio For?</h2>
+		<h2 class="fw-bold mb-5" style="color: #0077B6;" data-aos="fade-up">
+			Who Is Physio For?
+		</h2>
 
 		<div class="row g-4 justify-content-center">
 
 			<!-- User Card -->
 			<div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
-				<div class="bg-white p-4 rounded-4 shadow h-100">
-					<div class="d-inline-flex align-items-center justify-content-center bg-warning bg-opacity-25 rounded-circle mb-3" style="width: 70px; height: 70px;">
-						<i class="bi bi-person-circle fs-3 text-warning"></i>
+				<div class="card-blue p-4 h-100">
+					<div class="icon-circle">
+						<i class="bi bi-person-circle fs-3" style="color: #0077B6;"></i>
 					</div>
-					<h5 class="fw-bold">Users</h5>
-					<p class="text-muted">Find and book licensed physiotherapists with ease, and manage your sessions online.</p>
+					<h5 class="fw-bold text-dark">Users</h5>
+					<p class="text-muted">
+						Find and book licensed physiotherapists with ease, and manage your sessions online.
+					</p>
 				</div>
 			</div>
 
 			<!-- Therapist Card -->
 			<div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
-				<div class="bg-white p-4 rounded-4 shadow h-100">
-					<div class="d-inline-flex align-items-center justify-content-center bg-warning bg-opacity-25 rounded-circle mb-3" style="width: 70px; height: 70px;">
-						<i class="bi bi-heart-pulse fs-3 text-warning"></i>
+				<div class="card-blue p-4 h-100">
+					<div class="icon-circle">
+						<i class="bi bi-heart-pulse fs-3" style="color: #0077B6;"></i>
 					</div>
-					<h5 class="fw-bold">Therapists</h5>
-					<p class="text-muted">View your assigned patients, manage schedules, and provide effective therapy.</p>
+					<h5 class="fw-bold text-dark">Therapists</h5>
+					<p class="text-muted">
+						View your assigned patients, manage schedules, and provide effective therapy.
+					</p>
 				</div>
 			</div>
 
 			<!-- Admin Card -->
 			<div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
-				<div class="bg-white p-4 rounded-4 shadow h-100">
-					<div class="d-inline-flex align-items-center justify-content-center bg-warning bg-opacity-25 rounded-circle mb-3" style="width: 70px; height: 70px;">
-						<i class="bi bi-shield-lock fs-3 text-warning"></i>
+				<div class="card-blue p-4 h-100">
+					<div class="icon-circle">
+						<i class="bi bi-shield-lock fs-3" style="color: #0077B6;"></i>
 					</div>
-					<h5 class="fw-bold">Admins</h5>
-					<p class="text-muted">Add therapists, assign patients, and maintain smooth operation of the platform.</p>
+					<h5 class="fw-bold text-dark">Admins</h5>
+					<p class="text-muted">
+						Add therapists, assign patients, and maintain smooth operation of the platform.
+					</p>
 				</div>
 			</div>
 
 		</div>
 	</div>
 </section>
-<section class="py-5 bg-white">
+<section class="py-5" style="background-color: #F1FAFB;">
 	<div class="container text-center">
-		<h2 class="fw-bold mb-5" style="color: #f28500;" data-aos="fade-up">Why Choose Physio?</h2>
+		<h2 class="fw-bold mb-5" style="color: #0077B6;" data-aos="fade-up">Why Choose Physio?</h2>
 		<div class="row g-4">
 
 			<div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-				<div class="p-4 bg-light rounded-4 shadow-sm h-100">
-					<i class="bi bi-patch-check-fill fs-1 text-warning mb-3"></i>
-					<h5 class="fw-bold">Verified Therapists</h5>
+				<div class="p-4 bg-white rounded-4 shadow-sm h-100 transition-all hover-shadow">
+					<i class="bi bi-patch-check-fill fs-1 mb-3" style="color: #0077B6;"></i>
+					<h5 class="fw-bold text-dark">Verified Therapists</h5>
 					<p class="text-muted">Only certified and experienced physiotherapists on our platform.</p>
 				</div>
 			</div>
 
 			<div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-				<div class="p-4 bg-light rounded-4 shadow-sm h-100">
-					<i class="bi bi-clock-history fs-1 text-warning mb-3"></i>
-					<h5 class="fw-bold">Quick Booking</h5>
+				<div class="p-4 bg-white rounded-4 shadow-sm h-100 transition-all hover-shadow">
+					<i class="bi bi-clock-history fs-1 mb-3" style="color: #0077B6;"></i>
+					<h5 class="fw-bold text-dark">Quick Booking</h5>
 					<p class="text-muted">Book your session in under 2 minutes with our seamless interface.</p>
 				</div>
 			</div>
 
 			<div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-				<div class="p-4 bg-light rounded-4 shadow-sm h-100">
-					<i class="bi bi-bar-chart-line-fill fs-1 text-warning mb-3"></i>
-					<h5 class="fw-bold">Progress Tracking</h5>
+				<div class="p-4 bg-white rounded-4 shadow-sm h-100 transition-all hover-shadow">
+					<i class="bi bi-bar-chart-line-fill fs-1 mb-3" style="color: #0077B6;"></i>
+					<h5 class="fw-bold text-dark">Progress Tracking</h5>
 					<p class="text-muted">Monitor your therapy sessions and recovery through your dashboard.</p>
 				</div>
 			</div>
 
 			<div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
-				<div class="p-4 bg-light rounded-4 shadow-sm h-100">
-					<i class="bi bi-shield-lock-fill fs-1 text-warning mb-3"></i>
-					<h5 class="fw-bold">Secure Platform</h5>
+				<div class="p-4 bg-white rounded-4 shadow-sm h-100 transition-all hover-shadow">
+					<i class="bi bi-shield-lock-fill fs-1 mb-3" style="color: #0077B6;"></i>
+					<h5 class="fw-bold text-dark">Secure Platform</h5>
 					<p class="text-muted">Your health data is protected with top-level encryption and security.</p>
 				</div>
 			</div>
 
 			<div class="col-md-4" data-aos="fade-up" data-aos-delay="500">
-				<div class="p-4 bg-light rounded-4 shadow-sm h-100">
-					<i class="bi bi-phone-vibrate fs-1 text-warning mb-3"></i>
-					<h5 class="fw-bold">Mobile-Friendly</h5>
+				<div class="p-4 bg-white rounded-4 shadow-sm h-100 transition-all hover-shadow">
+					<i class="bi bi-phone-vibrate fs-1 mb-3" style="color: #0077B6;"></i>
+					<h5 class="fw-bold text-dark">Mobile-Friendly</h5>
 					<p class="text-muted">Use Physio on any device, anytime — fully responsive and mobile-ready.</p>
 				</div>
 			</div>
 
 			<div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
-				<div class="p-4 bg-light rounded-4 shadow-sm h-100">
-					<i class="bi bi-headset fs-1 text-warning mb-3"></i>
-					<h5 class="fw-bold">Friendly Support</h5>
+				<div class="p-4 bg-white rounded-4 shadow-sm h-100 transition-all hover-shadow">
+					<i class="bi bi-headset fs-1 mb-3" style="color: #0077B6;"></i>
+					<h5 class="fw-bold text-dark">Friendly Support</h5>
 					<p class="text-muted">We’re here to help you 24/7 — your care is our top priority.</p>
 				</div>
 			</div>
@@ -204,21 +363,23 @@
 </section>
 
 
-<section class="py-5" style="background-color: #fffaf5;">
+<section class="py-5" style="background-color: #E8F6FA;">
 	<div class="container text-center">
-		<h2 class="fw-bold mb-5" style="color: #f28500;" data-aos="fade-up">What Our Users Say</h2>
+		<h2 class="fw-bold mb-5" style="color: #0077B6;" data-aos="fade-up">What Our Users Say</h2>
 
 		<div class="row g-4 justify-content-center">
 
 			<!-- Testimonial 1 -->
 			<div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-				<div class="bg-white p-4 rounded-4 shadow-sm h-100">
-					<p class="text-muted">"Booking a therapist was super easy, and the sessions helped my back pain in just a few weeks!"</p>
+				<div class="testimonial-card h-100">
+					<p class="text-muted">
+						"Booking a therapist was super easy, and the sessions helped my back pain in just a few weeks!"
+					</p>
 					<div class="d-flex align-items-center mt-4">
-						<img src="https://i.pravatar.cc/50?img=12" class="rounded-circle me-3" alt="User 1">
+						<img src="https://i.pravatar.cc/50?img=12" class="rounded-circle me-3 border border-3 border-light" alt="User 1">
 						<div class="text-start">
-							<h6 class="mb-0 fw-bold">Riya Sharma</h6>
-							<small class="text-muted">User</small>
+							<h6 class="mb-0 fw-bold text-dark">Riya Sharma</h6>
+							<small class="text-secondary">User</small>
 						</div>
 					</div>
 				</div>
@@ -226,13 +387,15 @@
 
 			<!-- Testimonial 2 -->
 			<div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-				<div class="bg-white p-4 rounded-4 shadow-sm h-100">
-					<p class="text-muted">"Managing my patients has never been easier. The dashboard is clean and very intuitive!"</p>
+				<div class="testimonial-card h-100">
+					<p class="text-muted">
+						"Managing my patients has never been easier. The dashboard is clean and very intuitive!"
+					</p>
 					<div class="d-flex align-items-center mt-4">
-						<img src="https://i.pravatar.cc/50?img=24" class="rounded-circle me-3" alt="User 2">
+						<img src="https://i.pravatar.cc/50?img=24" class="rounded-circle me-3 border border-3 border-light" alt="User 2">
 						<div class="text-start">
-							<h6 class="mb-0 fw-bold">Dr. Neha Verma</h6>
-							<small class="text-muted">Therapist</small>
+							<h6 class="mb-0 fw-bold text-dark">Dr. Neha Verma</h6>
+							<small class="text-secondary">Therapist</small>
 						</div>
 					</div>
 				</div>
@@ -240,13 +403,15 @@
 
 			<!-- Testimonial 3 -->
 			<div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-				<div class="bg-white p-4 rounded-4 shadow-sm h-100">
-					<p class="text-muted">"Physio has simplified our clinic’s online workflow. Assigning patients is now seamless!"</p>
+				<div class="testimonial-card h-100">
+					<p class="text-muted">
+						"Physio has simplified our clinic’s online workflow. Assigning patients is now seamless!"
+					</p>
 					<div class="d-flex align-items-center mt-4">
-						<img src="https://i.pravatar.cc/50?img=32" class="rounded-circle me-3" alt="User 3">
+						<img src="https://i.pravatar.cc/50?img=32" class="rounded-circle me-3 border border-3 border-light" alt="User 3">
 						<div class="text-start">
-							<h6 class="mb-0 fw-bold">Ankit Deshmukh</h6>
-							<small class="text-muted">Admin</small>
+							<h6 class="mb-0 fw-bold text-dark">Ankit Deshmukh</h6>
+							<small class="text-secondary">Admin</small>
 						</div>
 					</div>
 				</div>
@@ -255,3 +420,4 @@
 		</div>
 	</div>
 </section>
+
