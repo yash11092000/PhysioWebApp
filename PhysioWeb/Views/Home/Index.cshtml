@@ -147,10 +147,21 @@
 			background-color: #d9e8ff;
 			transform: translateY(-2px);
 		}
+
+	#particles-js {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+		background: linear-gradient(135deg, #023E8A, #0077B6);
+	}
 </style>
 
-<header class="py-5 hero-section-dark">
-	<div class="container text-center text-white">
+<header class="py-5 hero-section-dark position-relative">
+	<div id="particles-js"></div>
+	<div class="container text-center text-white" style="z-index:99;">
 		<h1 class="display-4 fw-bold mb-3">Welcome to Physio</h1>
 		<p class="lead mb-4">
 			Get matched with expert physiotherapists and take the first step toward better movement and recovery.
@@ -421,3 +432,41 @@
 	</div>
 </section>
 
+@section scripts {
+	<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+	<script>
+				particlesJS("particles-js", {
+			"particles": {
+				"number": { "value": 60 },
+				"color": { "value": "#ffffff" },
+				"shape": { "type": "circle" },
+				"opacity": { "value": 0.4 },
+				"size": { "value": 3 },
+				"line_linked": {
+					"enable": true,
+					"distance": 150,
+					"color": "#ffffff",
+					"opacity": 0.2,
+					"width": 1
+				},
+				"move": {
+					"enable": true,
+					"speed": 2,
+					"direction": "none",
+					"out_mode": "out"
+				}
+			},
+			"interactivity": {
+				"events": {
+					"onhover": { "enable": false, "mode": "grab" },
+					"onclick": { "enable": true }
+				},
+				"modes": {
+					"grab": { "distance": 140, "line_linked": { "opacity": 0.4 } }
+				}
+			},
+			"retina_detect": true
+		});
+	</script>
+}

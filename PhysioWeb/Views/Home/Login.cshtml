@@ -3,69 +3,57 @@
 	ViewData["Title"] = "Login";
 }
 <style>
-	body {
-		background-color: #fffaf5;
-	}
-
 	.login-card {
-		border-radius: 1rem;
-		padding: 2rem;
-		background-color: #fff;
-		box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
 	}
 
-	.btn-orange {
-		background-color: #f28500;
-		color: white;
-	}
-
-		.btn-orange:hover {
-			background-color: #d66e00;
+		.login-card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 8px 24px rgba(0, 119, 182, 0.15);
 		}
 
-	.form-control:focus {
-		border-color: #f28500;
-		box-shadow: 0 0 0 0.2rem rgba(242, 133, 0, 0.25);
+	.btn:hover {
+		background-color: #023E8A !important;
 	}
 
-	.link-orange {
-		color: #f28500;
+	input:focus {
+		border-color: #0077B6 !important;
+		box-shadow: 0 0 0 0.2rem rgba(0, 119, 182, 0.25) !important;
 	}
 
-		.link-orange:hover {
-			color: #d66e00;
-		}
 </style>
-
-<div class="container d-flex align-items-center justify-content-center min-vh-100">
+<div class="container d-flex align-items-center justify-content-center min-vh-100" style="background-color: #F1FAFB;">
 	<div class="col-md-6 col-lg-4" data-aos="zoom-in">
-		<div class="login-card">
+		<div class="login-card bg-white p-5 rounded-4 shadow-lg">
 			<div class="text-center mb-4">
-				<i class="bi bi-heart-pulse-fill fs-1 text-warning"></i>
-				<h3 class="fw-bold mt-2" style="color: #f28500;">Physio Login</h3>
+				<i class="bi bi-heart-pulse-fill fs-1" style="color: #0077B6;"></i>
+				<h3 class="fw-bold mt-2" style="color: #023047;">Physio Login</h3>
 			</div>
 
 			<form action="/login" method="post">
-				<div class="mb-3">
-					<label for="email" class="form-label">Email address</label>
-					<input type="email" class="form-control" id="email" name="email" required placeholder="you@example.com">
+				<div class="mb-3 text-start">
+					<label for="email" class="form-label fw-semibold" style="color:#023047;">Email Address</label>
+					<input type="email" class="form-control form-control-lg rounded-3" id="email" name="email" required placeholder="you@example.com" style="background-color:#F1FAFB;">
 				</div>
 
-				<div class="mb-3">
-					<label for="password" class="form-label d-flex justify-content-between">
+				<div class="mb-3 text-start">
+					<label for="password" class="form-label d-flex justify-content-between fw-semibold" style="color:#023047;">
 						<span>Password</span>
-						<a href="#" class="small link-orange">Forgot?</a>
+						<a href="#" class="small" style="color:#0077B6; text-decoration:none;">Forgot?</a>
 					</label>
-					<input type="password" class="form-control" id="password" name="password" required placeholder="••••••••">
+					<input type="password" class="form-control form-control-lg rounded-3" id="password" name="password" required placeholder="••••••••" style="background-color:#F1FAFB;">
 				</div>
 
-				<div class="d-grid">
-					<button type="submit" class="btn btn-orange">Log In</button>
+				<div class="d-grid mt-4">
+					<button type="submit" class="btn btn-lg text-white rounded-3" style="background-color:#0077B6;">Log In</button>
 				</div>
 			</form>
 
 			<div class="text-center mt-4">
-				<small>Don't have an account? <a href="/Home/Register" class="link-orange fw-bold">Sign up</a></small>
+				<small style="color:#023047;">
+					Don’t have an account?
+					<a href="/Home/Register" style="color:#0077B6; font-weight:600; text-decoration:none;">Sign up</a>
+				</small>
 			</div>
 		</div>
 	</div>
