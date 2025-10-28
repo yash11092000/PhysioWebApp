@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
-<html lang="en">/
+<html lang="en">
+/
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,9 +12,18 @@
 	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 	<style>
 
+		:root {
+			--primary-color: #0077B6; /* Strong Blue */
+			--primary-dark: #005f8f; /* Hover Blue */
+			--secondary-color: #90E0EF; /* Light Blue */
+			--accent-color: #FFD166; /* Soft Yellow */
+			--text-color: #023047; /* Dark Navy */
+			--background-color: #F1FAFB; /* Light Blue Tint */
+		}
 
-		.btn-orange {
-			background-color: #f28500;
+		/* Buttons */
+		.btn-primary-custom {
+			background-color: var(--primary-color);
 			color: #fff !important;
 			border-radius: 50px;
 			padding: 0.6rem 1.5rem;
@@ -23,13 +33,13 @@
 			transition: all 0.3s ease;
 		}
 
-			.btn-orange:hover {
-				background-color: #f4a261;
+			.btn-primary-custom:hover {
+				background-color: var(--primary-dark);
 			}
 
-		.btn-outline-orange {
-			color: #f28500 !important;
-			border: 2px solid #f28500;
+		.btn-outline-primary-custom {
+			color: var(--primary-color) !important;
+			border: 2px solid var(--primary-color);
 			border-radius: 50px;
 			padding: 0.6rem 1.5rem;
 			font-size: 1.1rem;
@@ -37,49 +47,67 @@
 			transition: all 0.3s ease;
 		}
 
-			.btn-outline-orange:hover {
-				background-color: #f28500;
+			.btn-outline-primary-custom:hover {
+				background-color: var(--primary-color);
 				color: #fff !important;
 			}
 
-		a.btn,
-		a.btn:visited {
-			text-decoration: none !important;
+		/* Navbar */
+		.navbar-custom {
+			background-color: var(--background-color);
 		}
 
-		.card {
-			border-radius: 1rem !important; /* Equivalent to rounded-4 */
+		.navbar-brand-custom {
+			color: var(--primary-color) !important;
+			font-size: 1.6rem;
+			font-weight: 700;
 		}
 
-		/* Applies to your custom boxes (like in How It Works) */
-		.rounded-card {
-			border-radius: 1rem;
+		.nav-link-custom {
+			color: var(--text-color) !important;
+			font-weight: 500;
+			transition: color 0.3s ease;
 		}
 
-		/* Optional: smoother shadows */
-		.shadow-sm {
-			box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05) !important;
-		}
-
-		.navbar-toggler-icon {
-			background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(33, 37, 41, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-		}
-
-		.btn-orange {
-			background-color: #f28500;
-			color: white;
-		}
-
-			.btn-orange:hover {
-				background-color: #d66e00;
+			.nav-link-custom:hover {
+				color: var(--primary-color) !important;
 			}
+
+		/* Card */
+		.card-custom {
+			border-radius: 1rem;
+			background-color: #fff;
+			border: 1px solid var(--secondary-color);
+		}
+
+		/* Global text + background */
+		body {
+			background-color: var(--background-color);
+			color: var(--text-color);
+		}
+
+		.hero-section {
+			background-color: #F1FAFB; 
+			color: var(--text-color);
+		}
+
+			.hero-section h1 {
+				color: var(--primary-color);
+			}
+
+			.hero-section p {
+				color: #023047;
+				opacity: 0.8;
+			}
+
+
 	</style>
 </head>
 <body>
-	<header>
-		<nav class="navbar navbar-expand-lg shadow-sm sticky-top" style="background-color: #fffdfb;">
+	<header style="position: sticky;top: 0;z-index: 99;">
+		<nav class="navbar navbar-expand-lg navbar-custom shadow-sm sticky-top">
 			<div class="container">
-				<a class="navbar-brand fw-bold" href="#" style="color: #f28500; font-size: 1.6rem;">
+				<a class="navbar-brand navbar-brand-custom" href="#">
 					<i class="bi bi-heart-pulse-fill me-1"></i> Physio
 				</a>
 
@@ -89,19 +117,13 @@
 
 				<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 					<ul class="navbar-nav me-4">
-						<li class="nav-item">
-							<a class="nav-link px-3 active" href="/" style="color: #333;">Home</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link px-3" href="/Home/AboutUs" style="color: #333;">About</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link px-3" href="/Home/ContactUs" style="color: #333;">Contact</a>
-						</li>
+						<li class="nav-item"><a class="nav-link nav-link-custom active" href="/">Home</a></li>
+						<li class="nav-item"><a class="nav-link nav-link-custom" href="/Home/AboutUs">About</a></li>
+						<li class="nav-item"><a class="nav-link nav-link-custom" href="/Home/ContactUs">Contact</a></li>
 					</ul>
 
-					<a href="/Home/Login" class="btn btn-outline-orange me-2 text-decoration-none">Login</a>
-					<a href="/Home/Register" class="btn btn-orange text-decoration-none">Sign Up</a>
+					<a href="/Home/Login" class="btn btn-outline-primary-custom me-2">Login</a>
+					<a href="/Home/Register" class="btn btn-primary-custom">Sign Up</a>
 				</div>
 			</div>
 		</nav>
