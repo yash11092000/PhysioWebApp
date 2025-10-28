@@ -1,53 +1,94 @@
 ﻿@{
     ViewData["Title"] = "About Us";
 }
+<style>
+    .about-section {
+        background-color: #F1FAFB;
+    }
 
+    .highlight-text {
+        color: #0077B6;
+    }
 
-<section class="py-5" style="background-color: #fffaf5;">
+    .section-heading {
+        color: #023047;
+        font-weight: 700;
+    }
+
+    .mission-card {
+        background-color: #FFFFFF;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: none;
+    }
+
+        .mission-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 119, 182, 0.15);
+        }
+
+    .btn-blue {
+        background-color: #0077B6;
+        color: #fff;
+        border-radius: 12px;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-blue:hover {
+            background-color: #023E8A;
+            color: #fff;
+        }
+</style>
+
+<!-- About Section -->
+<section class="py-5 about-section">
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-lg-6" data-aos="fade-right">
-                <img src="https://via.placeholder.com/500x350" class="img-fluid rounded-4 shadow-sm" alt="Physio care">
+				<img src="~/img/aboutus.jpg" 
+                     class="img-fluid rounded-4 shadow-sm" style="border-radius:5px"
+                     alt="Physiotherapist helping a patient with exercise" />
             </div>
             <div class="col-lg-6" data-aos="fade-left">
-                <h2 class="fw-bold mb-3" style="color: #f28500;">About Physio</h2>
+                <h2 class="section-heading mb-3">About <span class="highlight-text">Physio</span></h2>
                 <p class="text-muted fs-5">
                     Physio is a platform designed to bridge the gap between patients and expert physiotherapists.
                     We aim to make recovery easy, accessible, and effective — all from the comfort of your home or clinic.
                 </p>
                 <p class="text-muted">
-                    Whether you're seeking support for an injury, post-operative therapy, or chronic pain management, Physio empowers you to connect with licensed professionals and track your progress.
+                    Whether you're seeking support for an injury, post-operative therapy, or chronic pain management,
+                    Physio empowers you to connect with licensed professionals and track your progress effortlessly.
                 </p>
             </div>
         </div>
     </div>
 </section>
 
+<!-- Mission Section -->
 <section class="py-5 bg-white">
     <div class="container text-center">
-        <h3 class="fw-bold mb-5" style="color: #f28500;" data-aos="fade-up">Our Mission</h3>
+        <h3 class="section-heading mb-5" data-aos="fade-up">Our Mission</h3>
         <div class="row g-4">
 
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="p-4 bg-light rounded-4 shadow-sm h-100">
-                    <i class="bi bi-heart-pulse-fill fs-1 text-warning mb-3"></i>
-                    <h5 class="fw-bold">Empower Recovery</h5>
+                <div class="mission-card p-4 rounded-4 shadow-sm h-100">
+                    <i class="bi bi-heart-pulse-fill fs-1 highlight-text mb-3"></i>
+                    <h5 class="fw-bold" style="color:#023047;">Empower Recovery</h5>
                     <p class="text-muted">Support users on their journey to a healthier, pain-free life through expert care.</p>
                 </div>
             </div>
 
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="p-4 bg-light rounded-4 shadow-sm h-100">
-                    <i class="bi bi-globe2 fs-1 text-warning mb-3"></i>
-                    <h5 class="fw-bold">Accessible Care</h5>
+                <div class="mission-card p-4 rounded-4 shadow-sm h-100">
+                    <i class="bi bi-globe2 fs-1 highlight-text mb-3"></i>
+                    <h5 class="fw-bold" style="color:#023047;">Accessible Care</h5>
                     <p class="text-muted">Bring physiotherapy services closer to everyone, regardless of location.</p>
                 </div>
             </div>
 
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                <div class="p-4 bg-light rounded-4 shadow-sm h-100">
-                    <i class="bi bi-person-check-fill fs-1 text-warning mb-3"></i>
-                    <h5 class="fw-bold">Verified Professionals</h5>
+                <div class="mission-card p-4 rounded-4 shadow-sm h-100">
+                    <i class="bi bi-person-check-fill fs-1 highlight-text mb-3"></i>
+                    <h5 class="fw-bold" style="color:#023047;">Verified Professionals</h5>
                     <p class="text-muted">Only qualified and verified physiotherapists can join our network.</p>
                 </div>
             </div>
@@ -56,9 +97,10 @@
     </div>
 </section>
 
-<section class="py-5" style="background-color: #fffaf5;">
+<!-- CTA Section -->
+<section class="py-5 about-section">
     <div class="container text-center" data-aos="fade-up">
-        <h4 class="fw-bold mb-4" style="color: #f28500;">Ready to start your healing journey?</h4>
-        <a href="/book" class="btn btn-lg btn-orange px-5">Book Your First Session</a>
+        <h4 class="fw-bold mb-4" style="color: #023047;">Ready to start your healing journey?</h4>
+        <a href="/book" class="btn btn-lg btn-blue px-5">Book Your First Session</a>
     </div>
 </section>

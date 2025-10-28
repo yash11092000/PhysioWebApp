@@ -3,56 +3,97 @@
 	ViewData["Title"] = "Login";
 }
 <style>
+	body {
+		background-color: #F1FAFB;
+		font-family: 'Poppins', sans-serif;
+	}
+
 	.login-card {
+		background-color: #ffffff;
+		padding: 2.5rem;
+		border-radius: 1rem;
+		box-shadow: 0 0.5rem 1.5rem rgba(0, 119, 182, 0.15);
+		border-top: 5px solid #0077B6;
 		transition: transform 0.3s ease, box-shadow 0.3s ease;
 	}
 
 		.login-card:hover {
 			transform: translateY(-5px);
-			box-shadow: 0 8px 24px rgba(0, 119, 182, 0.15);
+			box-shadow: 0 0.8rem 2rem rgba(0, 119, 182, 0.25);
 		}
 
-	.btn:hover {
-		background-color: #023E8A !important;
+	.btn-blue {
+		background-color: #0077B6;
+		color: #fff;
+		font-weight: 500;
+		border-radius: 0.5rem;
+		transition: all 0.3s ease;
 	}
 
-	input:focus {
-		border-color: #0077B6 !important;
-		box-shadow: 0 0 0 0.2rem rgba(0, 119, 182, 0.25) !important;
+		.btn-blue:hover {
+			background-color: #005f94;
+			box-shadow: 0 0.4rem 1rem rgba(0, 119, 182, 0.3);
+		}
+
+	.form-control,
+	.form-control-lg {
+		background-color: #F1FAFB;
+		border: 1px solid #d0e6ee;
+		border-radius: 0.5rem;
+	}
+
+		.form-control:focus {
+			border-color: #0077B6 !important;
+			box-shadow: 0 0 0 0.2rem rgba(0, 119, 182, 0.25) !important;
+		}
+
+	.link-blue {
+		color: #0077B6;
+		text-decoration: none;
+		transition: color 0.3s ease;
+	}
+
+		.link-blue:hover {
+			color: #005f94;
+			text-decoration: underline;
+		}
+
+	.text-dark-blue {
+		color: #023047;
 	}
 
 </style>
-<div class="container d-flex align-items-center justify-content-center min-vh-100" style="background-color: #F1FAFB;">
-	<div class="col-md-6 col-lg-4" data-aos="zoom-in">
-		<div class="login-card bg-white p-5 rounded-4 shadow-lg">
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+	<div class="col-md-6 col-lg-4" data-aos="fade-up">
+		<div class="login-card">
 			<div class="text-center mb-4">
-				<i class="bi bi-heart-pulse-fill fs-1" style="color: #0077B6;"></i>
-				<h3 class="fw-bold mt-2" style="color: #023047;">Physio Login</h3>
+				<i class="bi bi-heart-pulse-fill fs-1 text-primary" style="color:#0077B6;"></i>
+				<h3 class="fw-bold mt-2 text-dark-blue">Physio Login</h3>
 			</div>
 
 			<form action="/login" method="post">
 				<div class="mb-3 text-start">
-					<label for="email" class="form-label fw-semibold" style="color:#023047;">Email Address</label>
-					<input type="email" class="form-control form-control-lg rounded-3" id="email" name="email" required placeholder="you@example.com" style="background-color:#F1FAFB;">
+					<label for="email" class="form-label fw-semibold text-dark-blue">Email Address</label>
+					<input type="email" class="form-control form-control-lg" id="email" name="email" required placeholder="you@example.com">
 				</div>
 
 				<div class="mb-3 text-start">
-					<label for="password" class="form-label d-flex justify-content-between fw-semibold" style="color:#023047;">
+					<label for="password" class="form-label d-flex justify-content-between fw-semibold text-dark-blue">
 						<span>Password</span>
-						<a href="#" class="small" style="color:#0077B6; text-decoration:none;">Forgot?</a>
+						<a href="#" class="small link-blue">Forgot?</a>
 					</label>
-					<input type="password" class="form-control form-control-lg rounded-3" id="password" name="password" required placeholder="••••••••" style="background-color:#F1FAFB;">
+					<input type="password" class="form-control form-control-lg" id="password" name="password" required placeholder="••••••••">
 				</div>
 
 				<div class="d-grid mt-4">
-					<button type="submit" class="btn btn-lg text-white rounded-3" style="background-color:#0077B6;">Log In</button>
+					<button type="submit" class="btn btn-blue btn-lg">Log In</button>
 				</div>
 			</form>
 
 			<div class="text-center mt-4">
-				<small style="color:#023047;">
+				<small class="text-dark-blue">
 					Don’t have an account?
-					<a href="/Home/Register" style="color:#0077B6; font-weight:600; text-decoration:none;">Sign up</a>
+					<a href="/Home/Register" class="link-blue fw-semibold">Sign up</a>
 				</small>
 			</div>
 		</div>
