@@ -1,4 +1,5 @@
-﻿using PhysioWeb.Data;
+﻿using System.Globalization;
+using PhysioWeb.Data;
 using PhysioWeb.Models;
 
 namespace PhysioWeb.Repository
@@ -15,10 +16,12 @@ namespace PhysioWeb.Repository
         {
             try
             {
-                string[] parametersName = { "UniquId", "PatientName", "MobileNo", "City", "PinCode", "Address", "Pain Condition", "AppointmentDate", "AppointmentTime" };
-                object[] Values = { booking.UniquId, booking.PatientName, booking.MobileNumber, booking.City, booking.Pincode, booking.Address, booking.PainCondition, booking.AppointmentDate, booking.AppointmentTime };
+                var BookingDate = DateTime.ParseExact(booking.AppointmentDate, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                var BookingTime = DateTime.ParseExact(booking.AppointmentTime, "HH:mm", CultureInfo.InvariantCulture);
+                string[] parametersName = { "UniquId", "PatientName", "MobileNo", "City", "PinCode", "Address", "PainCondition", "AppointmentDate", "AppointmentTime","BookingType" };
+                object[] Values = { booking.UniquId, booking.PatientName, booking.MobileNumber, booking.City, booking.Pincode, booking.Address, booking.PainCondition, BookingDate, BookingTime, booking.BookingType };
 
-                string Sp = "FMR_SavePropertyCategory";
+                string Sp = "PHY_BookSession";
                 int RecordAffected = await _dbHelper.ExecuteNonQueryAsync(Sp, parametersName, Values);
                 return RecordAffected;
             }

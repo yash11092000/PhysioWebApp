@@ -18,6 +18,7 @@
 	}
 }
 <style>
+	/* Step Visibility */
 	.step {
 		display: none;
 	}
@@ -26,26 +27,69 @@
 			display: block;
 		}
 
+	/* Progress Bar */
 	.progress-bar {
-		background-color: #f28500 !important;
+		background-color: #0077B6 !important;
 	}
 
+	/* Themed Buttons */
 	.btn-theme {
-		background-color: #f28500;
+		background-color: #0077B6;
 		color: #fff;
+		border-radius: 12px;
+		transition: background-color 0.3s ease;
 	}
 
 		.btn-theme:hover {
-			background-color: #d97300;
+			background-color: #023E8A;
 			color: #fff;
 		}
 
+	/* Secondary Button */
+	.btn-secondary {
+		background-color: #E0F7FA;
+		color: #023047;
+		border: none;
+		border-radius: 12px;
+	}
+
+		.btn-secondary:hover {
+			background-color: #CAF0F8;
+			color: #023047;
+		}
+
+	/* Input focus styles */
+	.form-control:focus,
+	textarea:focus {
+		border-color: #0077B6 !important;
+		box-shadow: 0 0 0 0.2rem rgba(0, 119, 182, 0.25) !important;
+	}
+
+	/* Page background */
+	body {
+		background-color: #F1FAFB;
+	}
+
+	/* Form Card */
+	form.bg-white {
+		border: none;
+		box-shadow: 0 8px 24px rgba(0, 119, 182, 0.1);
+	}
+
+	h2 {
+		color: #023047 !important;
+	}
+
+	.req{
+		color:red;
+	}
 </style>
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 
 <div class="container py-5">
-	<h2 class="fw-bold mb-5 text-center" style="color:#f28500;">Free Online Consultation</h2>
+	<h2 class="fw-bold mb-5 text-center">@bookingTitle</h2>
 
 	<form id="multiStepForm" class="bg-white p-5 rounded-4 shadow mx-auto" style="max-width:700px;">
 		<!-- Progress Bar -->
@@ -56,24 +100,27 @@
 		<!-- Step 1 -->
 		<div class="step active">
 			<div class="mb-3">
-				<label class="form-label fw-bold">Name of Patient</label>
-				<input type="text" class="form-control" id="Name" required>
+				<label class="form-label fw-bold">Name of Patient <span class="req">*</span></label>
+				<input type="text" class="form-control" id="Name" name="PatientName" required>
 			</div>
 			<div class="mb-3">
-				<label class="form-label fw-bold">Mobile Number</label>
-				<input type="text" class="form-control" id="MobileNumber" required>
+				<label class="form-label fw-bold">Mobile Number <span class="req">*</span></label>
+				<input type="text" class="form-control" id="MobileNumber" name="MobileNumber" maxlength="10" required>
+				<div class="invalid-feedback" id="mobileError"></div>
 			</div>
 		</div>
 
 		<!-- Step 2 -->
 		<div class="step">
 			<div class="mb-3">
-				<label class="form-label fw-bold">City</label>
-				<input type="text" class="form-control" id="City" required>
+				<label class="form-label fw-bold">City <span class="req">*</span></label>
+				<input type="text" class="form-control" id="City" name="City" required>
 			</div>
 			<div class="mb-3">
-				<label class="form-label fw-bold">Pincode</label>
-				<input type="text" class="form-control" id="Pincode" required>
+				<label class="form-label fw-bold">Pincode <span class="req">*</span></label>
+				<input type="text" class="form-control" id="Pincode" name="Pincode" required>
+				<div class="invalid-feedback" id="pincodeError"></div>
+				<div class="valid-feedback">Looks good!</div>
 			</div>
 		</div>
 
@@ -81,11 +128,11 @@
 		<div class="step">
 			<div class="mb-3">
 				<label class="form-label fw-bold">Address</label>
-				<textarea class="form-control" id="Address" rows="2" required></textarea>
+				<textarea class="form-control" id="Address" rows="2" name="Address" required></textarea>
 			</div>
 			<div class="mb-3">
-				<label class="form-label fw-bold">Pain Condition</label>
-				<input type="text" class="form-control" id="PainCondition" required>
+				<label class="form-label fw-bold">Pain Condition <span class="req">*</span></label>
+				<input type="text" class="form-control" id="PainCondition" name="PainCondition" required>
 			</div>
 		</div>
 
@@ -93,16 +140,16 @@
 		<div class="step">
 			<div class="row g-3">
 				<div class="col-md-6">
-					<label class="form-label fw-bold">Select Date</label>
-					<input type="text" class="form-control" id="BookingDate" placeholder="Choose Date" required>
+					<label class="form-label fw-bold">Select Date <span class="req">*</span></label>
+					<input type="text" class="form-control" id="BookingDate" name="AppointmentDate" placeholder="Choose Date" required>
 				</div>
 				<div class="col-md-6">
-					<label class="form-label fw-bold">Select Time</label>
-					<input type="text" class="form-control" id="BookingTime" placeholder="Choose Time" required>
+					<label class="form-label fw-bold">Select Time <span class="req">*</span></label>
+					<input type="text" class="form-control" name="AppointmentTime" id="BookingTime" placeholder="Choose Time" required>
 				</div>
 			</div>
 		</div>
-
+		<input type="text" name="BookingType" id="BookingType" value="@bookingType" hidden />
 		<!-- Navigation Buttons -->
 		<div class="d-flex justify-content-between mt-4">
 			<button type="button" id="nextBtn" class="btn btn-theme">Next</button>
@@ -186,45 +233,39 @@
 				e.preventDefault();
 				if (!validateStep(currentStep)) return;
 
-			// Collect data
-			const data = {};
-			$(":input", this).each(function(){
-				if (this.id) data[this.id] = this.value;
-			});
 				 $.ajax({
-			url: '/Booking/SaveSession',
-			type: 'POST',
-			contentType: 'application/json',
-			data: JSON.stringify(data),
-			success: function(data){
-				if(data > 0){
-			 Swal.fire({
-				icon: 'success',
-				title: 'Booking Successful!',
-				text: 'Your consultation has been booked.',
-				confirmButtonColor: '#f28500'
-			});
-			$("#multiStepForm")[0].reset();
-			currentStep = 0;
-			showStep(currentStep);
-				}
-				else{
-				Swal.fire({
-				icon: 'error',
-				title: 'Submission Failed!',
-				text: 'Something Went Wrong.',
-				confirmButtonColor: '#f28500'
-			});
-				}
-		},
-		error: function() {
-			Swal.fire({
-				icon: 'error',
-				title: 'Submission Failed!',
-				text: 'Please try again later.',
-				confirmButtonColor: '#f28500'
-			});
-		}
+						url: '/Booking/SaveSession',
+						type: 'POST',
+						data: $("#multiStepForm").serialize(),
+						success: function(data){
+							if(data > 0){
+						 Swal.fire({
+							icon: 'success',
+							title: 'Booking Successful!',
+							text: 'Your consultation has been booked.',
+							confirmButtonColor: '#f28500'
+						});
+						$("#multiStepForm")[0].reset();
+						currentStep = 0;
+						showStep(currentStep);
+							}
+							else{
+							Swal.fire({
+							icon: 'error',
+							title: 'Submission Failed!',
+							text: 'Something Went Wrong.',
+							confirmButtonColor: '#f28500'
+						});
+					}
+						},
+						error: function() {
+							Swal.fire({
+								icon: 'error',
+								title: 'Submission Failed!',
+								text: 'Please try again later.',
+								confirmButtonColor: '#f28500'
+							});
+						}
 		});
 		});
 
@@ -235,5 +276,110 @@
 		// Show first step
 		showStep(currentStep);
 
+
+			  $('#MobileNumber').on('change', function() {
+			validateMobileNumber($(this).val());
+		});
+
+		function validateMobileNumber(mobileNumber) {
+			const mobileInput = $('#MobileNumber');
+			const errorDiv = $('#mobileError');
+
+			// Remove any existing validation classes
+			mobileInput.removeClass('is-valid is-invalid');
+
+			// Basic check for empty field
+			if (!mobileNumber.trim()) {
+				mobileInput.addClass('is-invalid');
+				errorDiv.text('Mobile number is required.');
+				return false;
+			}
+
+			// Remove all non-digit characters for validation
+			const cleanNumber = mobileNumber.replace(/\D/g, '');
+
+			// Check if it's a valid mobile number (adjust regex as needed for your country)
+			// This regex validates 10-digit numbers (US/Canada format)
+			const mobileRegex = /^\d{10}$/;
+
+			if (!mobileRegex.test(cleanNumber)) {
+				mobileInput.addClass('is-invalid');
+				errorDiv.text('Please enter a valid 10-digit mobile number.');
+				return false;
+			}
+
+			// If validation passes
+			mobileInput.addClass('is-valid');
+			errorDiv.text('');
+			return true;
+		}
+
+
+			  // Validate on change (when user leaves the field)
+		$('#Name').on('change', function() {
+			validatePatientName($(this).val());
+		});
+
+		// Optional: Validate on input (real-time as user types)
+		$('#Name').on('input', function() {
+			const name = $(this).val();
+			if (name.trim().length > 0) {
+				$(this).removeClass('is-invalid');
+				$(this).addClass('is-valid');
+				$('#nameError').text('');
+			}
+		});
+
+		function validatePatientName(name) {
+			const nameInput = $('#Name');
+			const errorDiv = $('#nameError');
+
+			nameInput.removeClass('is-valid is-invalid');
+
+			if (!name.trim()) {
+				nameInput.addClass('is-invalid');
+				errorDiv.text('Patient name is required.');
+				return false;
+			}
+
+			nameInput.addClass('is-valid');
+			errorDiv.text('');
+			return true;
+		}
+			  $('#Pincode').on('change', function() {
+			validatePincode($(this).val());
+		});
+
+		function validatePincode(pincode) {
+			const pincodeInput = $('#Pincode');
+			const errorDiv = $('#pincodeError');
+
+			// Remove any existing validation classes
+			pincodeInput.removeClass('is-valid is-invalid');
+
+			// Check if empty
+			if (!pincode.trim()) {
+				pincodeInput.addClass('is-invalid');
+				errorDiv.text('Pincode is required.');
+				return false;
+			}
+
+			// Remove all non-digit characters
+			const cleanPincode = pincode.replace(/\D/g, '');
+
+			// Check if it's exactly 6 digits (standard for many countries including India)
+			const pincodeRegex = /^\d{6}$/;
+
+			if (!pincodeRegex.test(cleanPincode)) {
+				pincodeInput.addClass('is-invalid');
+				errorDiv.text('Please enter a valid 6-digit pincode.');
+				return false;
+			}
+
+			// If validation passes
+			pincodeInput.addClass('is-valid');
+			errorDiv.text('');
+			return true;
+		}
 	</script>
       }

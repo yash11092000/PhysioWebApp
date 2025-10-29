@@ -18,7 +18,6 @@
 
         public string AppointmentTime { get; set; }
 
-        // Extra: If you want to know type of booking (from query string)
         public int BookingType { get; set; }
     }
 }
