@@ -16,8 +16,8 @@ namespace PhysioWeb.Repository
         {
             try
             {
-                var BookingDate = DateTime.ParseExact(booking.AppointmentDate, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-                var BookingTime = DateTime.ParseExact(booking.AppointmentTime, "HH:mm", CultureInfo.InvariantCulture);
+                var BookingDate = DateTime.ParseExact(booking.AppointmentDate, "dd-MM-yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd");
+                var BookingTime = booking.AppointmentTime;
                 string[] parametersName = { "UniquId", "PatientName", "MobileNo", "City", "PinCode", "Address", "PainCondition", "AppointmentDate", "AppointmentTime","BookingType" };
                 object[] Values = { booking.UniquId, booking.PatientName, booking.MobileNumber, booking.City, booking.Pincode, booking.Address, booking.PainCondition, BookingDate, BookingTime, booking.BookingType };
 

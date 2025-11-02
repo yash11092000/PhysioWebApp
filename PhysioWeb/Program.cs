@@ -10,6 +10,7 @@ builder.Services.AddScoped<DbHelper>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IManagementRepository, ManagementRepository>();
+builder.Services.AddScoped<IHomeRepository, HomeRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

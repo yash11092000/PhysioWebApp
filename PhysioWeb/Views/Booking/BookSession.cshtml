@@ -80,8 +80,8 @@
 		color: #023047 !important;
 	}
 
-	.req{
-		color:red;
+	.req {
+		color: red;
 	}
 </style>
 
@@ -118,7 +118,7 @@
 			</div>
 			<div class="mb-3">
 				<label class="form-label fw-bold">Pincode <span class="req">*</span></label>
-				<input type="text" class="form-control" id="Pincode" name="Pincode" required>
+				<input type="text" class="form-control" id="Pincode" name="Pincode" maxlength="6" required>
 				<div class="invalid-feedback" id="pincodeError"></div>
 				<div class="valid-feedback">Looks good!</div>
 			</div>
@@ -230,9 +230,16 @@
 		}
 
 		$("#submitBtn").on("click", function (e) {
-				e.preventDefault();
+			e.preventDefault();
 				if (!validateStep(currentStep)) return;
 
+				if($('#MobileNumber').val() == ""){
+					alert("Enter Mobile No")
+				}
+				else if($("#Pincode").val() == ""){
+					alert("Enter Mobile No")
+				}
+				else{
 				 $.ajax({
 						url: '/Booking/SaveSession',
 						type: 'POST',
@@ -267,6 +274,7 @@
 							});
 						}
 		});
+				}
 		});
 
 		// Initialize Flatpickr
@@ -292,6 +300,7 @@
 			if (!mobileNumber.trim()) {
 				mobileInput.addClass('is-invalid');
 				errorDiv.text('Mobile number is required.');
+				$("#MobileNumber").val("");
 				return false;
 			}
 
@@ -305,6 +314,7 @@
 			if (!mobileRegex.test(cleanNumber)) {
 				mobileInput.addClass('is-invalid');
 				errorDiv.text('Please enter a valid 10-digit mobile number.');
+				$("#MobileNumber").val("");
 				return false;
 			}
 
@@ -361,6 +371,7 @@
 			if (!pincode.trim()) {
 				pincodeInput.addClass('is-invalid');
 				errorDiv.text('Pincode is required.');
+				$("#Pincode").val("");
 				return false;
 			}
 
@@ -373,6 +384,7 @@
 			if (!pincodeRegex.test(cleanPincode)) {
 				pincodeInput.addClass('is-invalid');
 				errorDiv.text('Please enter a valid 6-digit pincode.');
+				$("#Pincode").val("");
 				return false;
 			}
 

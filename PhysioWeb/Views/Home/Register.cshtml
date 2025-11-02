@@ -66,29 +66,29 @@
 				<h3 class="fw-bold mt-2 text-accent">Create an Account</h3>
 			</div>
 
-			<form action="/register" method="post">
+			<form id="RegisterForm">
 				<div class="mb-3">
 					<label for="fullName" class="form-label fw-semibold">Full Name</label>
-					<input type="text" class="form-control" id="fullName" name="fullName" required placeholder="John Doe">
+					<input type="text" class="form-control" id="fullName" name="UserName" required placeholder="John Doe">
 				</div>
 
 				<div class="mb-3">
 					<label for="role" class="form-label fw-semibold">Register As</label>
-					<select class="form-select" id="role" name="role" required>
+					<select class="form-select" id="role" name="UserRole" required>
 						<option value="" disabled selected>Select Role</option>
-						<option value="user">User</option>
+						<option value="user" selected>User</option>
 						<option value="therapist">Therapist</option>
 					</select>
 				</div>
 
 				<div class="mb-3">
 					<label for="email" class="form-label fw-semibold">Email Address</label>
-					<input type="email" class="form-control" id="email" name="email" required placeholder="you@example.com">
+					<input type="email" class="form-control" id="email" name="EmailId" required placeholder="you@example.com">
 				</div>
 
 				<div class="mb-3">
 					<label for="password" class="form-label fw-semibold">Create Password</label>
-					<input type="password" class="form-control" id="password" name="password" required placeholder="••••••••">
+					<input type="password" class="form-control" id="password" name="Password" required placeholder="••••••••">
 				</div>
 
 				<div class="mb-3">
@@ -97,7 +97,7 @@
 				</div>
 
 				<div class="d-grid">
-					<button type="submit" class="btn btn-blue">Register</button>
+					<button type="button" id="registerBtn" class="btn btn-blue">Register</button>
 				</div>
 			</form>
 
@@ -110,3 +110,66 @@
 		</div>
 	</div>
 </div>
+@section scripts {
+	<script>
+		$('#registerBtn').on('click', function (e) {
+						var password = $("#password").val();
+						var confirmPassword = $("#confirmPassword").val();
+						var EmailId  = $("#email");
+						if(EmailId.val() == ""){
+							Swal.fire({
+								  position: "top-end",
+								  icon: "error",
+								  title: "Please Enter EmailId",
+								  showConfirmButton: false,
+								  timer: 1500
+								});
+						}
+						else if(password !== confirmPassword){
+									Swal.fire({
+								  position: "top-end",
+								  icon: "error",
+								  title: "Password And Confirm Password Should Match",
+								  showConfirmButton: false,
+								  timer: 1500
+								});
+						}
+						else{
+				e.preventDefault();
+				$.ajax({
+					url: '/Home/Register',
+					type: 'POST',
+					data: $("#RegisterForm").serialize(),
+					success: function (response) {
+							if (response) {
+								Swal.fire({
+									title: 'Registration Successful!',
+									text: 'Your account has been created successfully.',
+									icon: 'success',
+									confirmButtonText: 'OK'
+								}).then(() => {
+									window.location.href = '/Home/Login';
+								});
+							} else {
+								Swal.fire({
+									title: 'Error',
+									text: response.message || 'Something went wrong. Please try again.',
+									icon: 'error',
+									confirmButtonText: 'OK'
+								});
+					}
+					},
+					error: function (xhr) {
+						Swal.fire({
+									title: 'Error',
+									text: response.message || 'Something went wrong. Please try again.',
+									icon: 'error',
+									confirmButtonText: 'OK'
+								});
+					}
+				});
+					}
+			});
+
+	</script>
+}
