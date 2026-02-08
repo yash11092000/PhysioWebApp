@@ -18,6 +18,8 @@
 
         public string AppointmentTime { get; set; }
 
+
+
         public int BookingType { get; set; }
     }
 }
